@@ -1,0 +1,37 @@
+# Ignorar ambientes virtuais
+.venv/
+venv/
+
+# Ignorar configurações específicas do VSCode
+.vscode/
+
+# Ignorar arquivos de cache do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignorar logs
+*.log
+
+# Ignorar arquivos gerados pelo sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar dependências de pacotes (se aplicável)
+*.egg-info/
+*.eggs/
+
+# Ignorar arquivos de teste gerados por ferramentas de cobertura de código
+.coverage
+.cache/
+htmlcov/
+
+# Ignorar saídas de testes
+*.pytest_cache/
+
+# Ignorar arquivos gerados pelo Docker (se estiver usando)
+docker-compose.override.yml
+
+# Ignorar arquivos de compilação de Cython (se aplicável)
+*.c
+*.so
