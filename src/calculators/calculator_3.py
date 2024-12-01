@@ -1,6 +1,8 @@
 from src.drivers.interfaces.driver_handler_interface import DriverHandlerInterface
 from flask import request as FlaskRequest
 from typing import Dict, List
+from src.errors.http_unprocessable_entity import HTTPUnprocessableEntityError
+from src.errors.http_bad_request import HTTPBadRequest
 
 class Calculator3:
     def __init__(self, driver_handler: DriverHandlerInterface) -> None:
@@ -20,11 +22,11 @@ class Calculator3:
 
     def __validate_body(self, body: Dict) -> List[float]:
         if "numbers" not in body:
-            raise Exception("Invalid request, missing 'numbers' key")
+            raise HTTPUnprocessableEntityError("Invalid request, missing 'numbers' key")
 
         input_data = body["numbers"]
         if not isinstance(input_data, list):
-            raise Exception("Invalid request, 'numbers' key must be a list")
+            raise HTTPUnprocessableEntityError("Invalid request, 'numbers' key must be a list")
 
         return input_data   
     
@@ -40,7 +42,7 @@ class Calculator3:
     
     def __verify_results(self, variance: float, multiplication: float) -> None:
         if variance < multiplication:
-            raise Exception("Process Failed: Variance is less than multiplication")
+            raise HTTPBadRequest("Process Failed: Variance is less than multiplication")
         
     def __format_response(self, variance: float) -> Dict:
         return {
